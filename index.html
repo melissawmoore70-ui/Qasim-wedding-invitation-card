@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Qasim Weds Zoya</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="scene-theme-0">
+
+    <!-- Reusable 3D Ornament Divider SVG -->
+    <svg width="0" height="0" style="position:absolute; visibility:hidden;" aria-hidden="true">
+        <defs>
+            <linearGradient id="gold3DGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fff8d6" />
+                <stop offset="35%" stop-color="#ffd54f" />
+                <stop offset="70%" stop-color="#d4af37" />
+                <stop offset="100%" stop-color="#785206" />
+            </linearGradient>
+            <filter id="drop3D" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.65"/>
+            </filter>
+            <symbol id="ornament-divider" viewBox="0 0 320 28">
+                <g filter="url(#drop3D)">
+                    <path d="M10 14 H122 M198 14 H310" stroke="url(#gold3DGrad)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M160 2 L174 14 L160 26 L146 14 Z" fill="url(#gold3DGrad)"/>
+                    <circle cx="132" cy="14" r="3.5" fill="url(#gold3DGrad)"/>
+                    <circle cx="188" cy="14" r="3.5" fill="url(#gold3DGrad)"/>
+                </g>
+            </symbol>
+        </defs>
+    </svg>
+
+    <!-- Fixed Architectural Royal Gold Frame Corners -->
+    <div class="royal-viewport-frame" aria-hidden="true">
+        <span class="frame-corner fc-tl"></span>
+        <span class="frame-corner fc-tr"></span>
+        <span class="frame-corner fc-bl"></span>
+        <span class="frame-corner fc-br"></span>
+    </div>
+
+    <!-- 3D Ambient Particles & Falling Petals Canvas -->
+    <canvas id="ambient-canvas"></canvas>
+
+    <!-- Hidden YouTube Audio Player for Background Loop (Strictly Off-Screen) -->
+    <div id="yt-audio-Wrapper" aria-hidden="true">
+        <div id="yt-player"></div>
+    </div>
+
+    <!-- ===================================================================
+         1. UNIQUE 3D JEWEL SHOWCASE BOX POP-UP WINDOW (STARTING SCREEN)
+         =================================================================== -->
+    <div id="royal-gate" class="royal-gate">
+        <div class="popup-3d-box-stage" id="popup-3d-stage">
+            <div class="royal-3d-box" id="royal-3d-box">
+                <!-- 3D Box Outer Bevel & 4 Corner 3D Gem Studs -->
+                <span class="box-gem gem-tl"></span>
+                <span class="box-gem gem-tr"></span>
+                <span class="box-gem gem-bl"></span>
+                <span class="box-gem gem-br"></span>
+
+                <!-- Top 3D Crown Crest on Box Lid -->
+                <div class="box-top-crest">
+                    <img class="icon-3d-img icon-3d-md" data-icon-3d="crown" alt="3D Crown" />
+                </div>
+
+                <!-- Recessed 3D Velvet Inner Chamber -->
+                <div class="box-inner-chamber">
+                    <p class="gate-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
+
+                    <!-- Unique 3D Sculpted Couple Showcase Inside 3D Box -->
+                    <div class="box-3d-couple-showcase">
+                        <div class="box-spotlight-halo"></div>
+                        <img class="couple-3d-hero-img" data-png-type="royalCouple3D" alt="Qasim and Zoya 3D Couple" />
+                    </div>
+
+                    <p class="gate-sub">THE ROYAL WEDDING CELEBRATION OF</p>
+                    <h1 class="gate-names">Qasim <span>Weds</span> Zoya</h1>
+                    <svg class="ornament-svg"><use href="#ornament-divider"></use></svg>
+                    <p class="gate-date">March 1st – 3rd, 2030</p>
+
+                    <button id="enter-journey-btn" class="gate-enter-btn">
+                        <img class="icon-3d-img icon-3d-xs" data-icon-3d="rings" alt="3D Rings" />
+                        <span>Open Royal Invitation</span>
+                    </button>
+                </div>
+
+                <!-- 3D Box Bottom Golden Plinth Base -->
+                <div class="box-bottom-plinth"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Side Scroll Progress Navigation -->
+    <nav class="scroll-progress-nav" aria-label="Wedding Scenes">
+        <div class="progress-track">
+            <div class="progress-fill" id="scroll-progress-fill"></div>
+        </div>
+        <a href="#scene-nikah" class="nav-node active" data-scene="0" title="Sacred Nikah">
+            <span class="node-dot"></span>
+            <span class="node-label">Nikah</span>
+        </a>
+        <a href="#scene-mehndi" class="nav-node" data-scene="1" title="Mehndi Night">
+            <span class="node-dot"></span>
+            <span class="node-label">Mehndi</span>
+        </a>
+        <a href="#scene-barat" class="nav-node" data-scene="2" title="Royal Barat">
+            <span class="node-dot"></span>
+            <span class="node-label">Barat</span>
+        </a>
+        <a href="#scene-walima" class="nav-node" data-scene="3" title="Walima Reception">
+            <span class="node-dot"></span>
+            <span class="node-label">Walima</span>
+        </a>
+        <a href="#scene-guests" class="nav-node" data-scene="4" title="Royal Family">
+            <span class="node-dot"></span>
+            <span class="node-label">Family</span>
+        </a>
+    </nav>
+
+    <!-- Desktop Music Controller (Automatically Hidden on Mobile View via CSS) -->
+    <div id="music-widget" class="music-widget" title="Toggle Background Music">
+        <div class="vinyl-disc" id="vinyl-disc">
+            <img class="icon-3d-img icon-3d-sm" data-icon-3d="music" alt="3D Music" />
+        </div>
+        <div class="music-meta">
+            <span class="music-status" id="music-status">Playing Loop • Zain Zohaib</span>
+            <span class="music-title">Akhiyan De Samne Tu Baitha Ravein</span>
+        </div>
+        <div class="sound-bars" id="sound-bars">
+            <span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- ===================================================================
+         MAIN SCROLLING STORYTELLING CONTAINER (OPEN STAGE - NO BOXY CARDS)
+         =================================================================== -->
+    <main class="story-wrapper">
+
+        <!-- ===============================================================
+             SCENE 1: SACRED NIKAH & BLESSINGS (OPEN ARCH SANCTUARY LAYOUT)
+             =============================================================== -->
+        <section id="scene-nikah" class="wedding-scene scene-nikah" data-scene-index="0">
+            <!-- Floating 3D PNG Background Props -->
+            <div class="scene-3d-props">
+                <img class="png-3d-prop prop-lantern-left" data-png-type="lantern" data-depth="0.18" alt="3D Golden Lantern" />
+                <img class="png-3d-prop prop-lantern-right" data-png-type="lantern" data-depth="0.24" alt="3D Golden Lantern" />
+                <img class="png-3d-prop prop-rose-bottom-left" data-png-type="whiteGoldRose" data-depth="0.15" alt="3D White Gold Rose" />
+                <img class="png-3d-prop prop-rose-bottom-right" data-png-type="whiteGoldRose" data-depth="0.20" alt="3D White Gold Rose" />
+            </div>
+
+            <div class="scene-container">
+                <!-- Open Royal Dome Header with 3D Crescent Icon -->
+                <div class="reveal-item reveal-zoom">
+                    <div class="sacred-crest">
+                        <img class="icon-3d-img icon-3d-lg" data-icon-3d="crescent" alt="3D Crescent" />
+                    </div>
+                    <p class="arabic-calligraphy">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
+                    <p class="calligraphy-sub">In the Name of Allah, the Most Gracious, the Most Merciful</p>
+                </div>
+
+                <!-- Hero Couple Display -->
+                <div class="nikah-hero-center reveal-item reveal-up">
+                    <span class="floating-tag">SACRED UNION</span>
+                    <h1 class="giant-couple-names">
+                        <span class="name-left">Qasim</span>
+                        <span class="weds-emblem">&amp;</span>
+                        <span class="name-right">Zoya</span>
+                    </h1>
+                    <svg class="ornament-svg"><use href="#ornament-divider"></use></svg>
+                    <p class="family-invite-lead">
+                        Together with their families, request the honor of your presence
+                    </p>
+                </div>
+
+                <!-- Staggered Open Floating Scrolls for Quran & Hadith + Center 3D Couple -->
+                <div class="sacred-scrolls-wing">
+                    <!-- Left Wing: Quran Verse -->
+                    <article class="open-scroll-panel reveal-item reveal-left">
+                        <div class="scroll-roller-top"></div>
+                        <div class="scroll-content">
+                            <span class="scroll-tag">AL-QURAN | SURAH AR-RUM (30:21)</span>
+                            <p class="arabic-ayah">
+                                وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+                            </p>
+                            <p class="ayah-english">
+                                "And among His Signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them, and He has put love and mercy between your hearts."
+                            </p>
+                        </div>
+                        <div class="scroll-roller-bottom"></div>
+                    </article>
+
+                    <!-- Center 3D Sculpted Couple Portrait Cutout -->
+                    <div class="center-3d-couple reveal-item reveal-zoom">
+                        <div class="halo-ring"></div>
+                        <div class="halo-ring-inner"></div>
+                        <img class="png-3d-prop couple-3d-cutout" data-png-type="royalCouple3D" data-depth="0.1" alt="3D Wedding Couple" />
+                    </div>
+
+                    <!-- Right Wing: Hadith Verse -->
+                    <article class="open-scroll-panel reveal-item reveal-right">
+                        <div class="scroll-roller-top"></div>
+                        <div class="scroll-content">
+                            <span class="scroll-tag">HADITH | SUNAN IBN MAJAH: 1846</span>
+                            <p class="arabic-ayah">
+                                النِّكَاحُ مِنْ سُنَّتِي فَمَنْ لَمْ يَعْمَلْ بِسُنَّتِي فَلَيْسَ مِنِّي
+                            </p>
+                            <p class="ayah-english">
+                                "Nikah (Marriage) is part of my Sunnah, and whoever does not follow my Sunnah has nothing to do with me."
+                            </p>
+                        </div>
+                        <div class="scroll-roller-bottom"></div>
+                    </article>
+                </div>
+
+                <div class="scroll-down-cue reveal-item reveal-up">
+                    <span>Scroll Down for Rasm-e-Mehndi</span>
+                    <div class="mouse-wheel"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===============================================================
+             SCENE 2: RASM-E-MEHNDI (FESTIVE MARIGOLD GARLAND & MANDALA STAGE)
+             =============================================================== -->
+        <section id="scene-mehndi" class="wedding-scene scene-mehndi" data-scene-index="1">
+            <!-- Top Swaying Marigold (Genda Phool) Strings -->
+            <div class="marigold-canopy" aria-hidden="true">
+                <div class="garland-string s1"></div>
+                <div class="garland-string s2"></div>
+                <div class="garland-string s3"></div>
+                <div class="garland-string s4"></div>
+                <div class="garland-string s5"></div>
+                <div class="garland-string s6"></div>
+                <div class="garland-string s7"></div>
+            </div>
+
+            <!-- Floating 3D PNG Props for Mehndi -->
+            <div class="scene-3d-props">
+                <img class="png-3d-prop prop-dholak" data-png-type="dholak" data-depth="0.22" alt="3D Festive Dholak" />
+                <img class="png-3d-prop prop-mehndi-thali" data-png-type="mehndiThali" data-depth="0.20" alt="3D Mehndi Thali with Diyas" />
+                <img class="png-3d-prop prop-marigold-left" data-png-type="marigoldFlower" data-depth="0.14" alt="3D Marigold Flower" />
+                <img class="png-3d-prop prop-marigold-right" data-png-type="marigoldFlower" data-depth="0.16" alt="3D Marigold Flower" />
+            </div>
+
+            <div class="scene-container mehndi-layout">
+                <!-- Rotating Giant Henna Mandala Halo Behind Text -->
+                <div class="mehndi-mandala-stage reveal-item reveal-zoom">
+                    <div class="spinning-mandala-ring"></div>
+
+                    <div class="festive-ribbon">
+                        <img class="icon-3d-img icon-3d-sm" data-icon-3d="floral" alt="3D Floral" />
+                        <span>RASM-E-HENNA • MEHNDI NIGHT</span>
+                        <img class="icon-3d-img icon-3d-sm" data-icon-3d="floral" alt="3D Floral" />
+                    </div>
+
+                    <p class="mehndi-intro-text">With joyful hearts, warm regards &amp; festive spirit</p>
+
+                    <!-- Special Highlight for Host Sidra Javed -->
+                    <div class="sidra-host-crown reveal-item reveal-up">
+                        <span class="crown-overline">LOVINGLY HOSTED BY</span>
+                        <h2 class="sidra-spotlight">Sidra Javed</h2>
+                        <svg class="ornament-svg"><use href="#ornament-divider"></use></svg>
+                    </div>
+
+                    <p class="mehndi-invite-line">
+                        Cordially invites you to celebrate the vibrant Mehndi ceremony of
+                    </p>
+                    <h3 class="scene-couple-signature">Qasim <span>Weds</span> Zoya</h3>
+                </div>
+
+                <!-- Open Floating Festival Orbs with 3D Icons for Date, Time & Venue -->
+                <div class="mehndi-orbs-row">
+                    <div class="festive-orb orb-date reveal-item reveal-left">
+                        <div class="orb-icon-wrap">
+                            <img class="icon-3d-img icon-3d-md" data-icon-3d="calendar" alt="3D Calendar" />
+                        </div>
+                        <span class="orb-label">DATE</span>
+                        <strong class="orb-value">1st March 2030</strong>
+                    </div>
+
+                    <div class="festive-orb orb-center-venue reveal-item reveal-up">
+                        <div class="orb-icon-wrap">
+                            <img class="icon-3d-img icon-3d-md" data-icon-3d="location" alt="3D Venue Pin" />
+                        </div>
+                        <span class="orb-label">VENUE</span>
+                        <strong class="orb-venue-title">Shapes Community Club</strong>
+                        <span class="orb-venue-sub">Al Rehman Garden Phase 2</span>
+                    </div>
+
+                    <div class="festive-orb orb-time reveal-item reveal-right">
+                        <div class="orb-icon-wrap">
+                            <img class="icon-3d-img icon-3d-md" data-icon-3d="clock" alt="3D Clock" />
+                        </div>
+                        <span class="orb-label">TIME</span>
+                        <strong class="orb-value">8:00 PM</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===============================================================
+             SCENE 3: BARAT CEREMONY (IMPERIAL MUGHAL DARBAR PROCESSION)
+             =============================================================== -->
+        <section id="scene-barat" class="wedding-scene scene-barat" data-scene-index="2">
+            <!-- Floating 3D PNG Props for Barat -->
+            <div class="scene-3d-props">
+                <img class="png-3d-prop prop-sehra-crown" data-png-type="royalSehra" data-depth="0.20" alt="3D Royal Groom Kalgi & Sehra" />
+                <img class="png-3d-prop prop-red-rose-1" data-png-type="crimsonRose" data-depth="0.16" alt="3D Crimson Velvet Rose" />
+                <img class="png-3d-prop prop-red-rose-2" data-png-type="crimsonRose" data-depth="0.22" alt="3D Crimson Velvet Rose" />
+                <img class="png-3d-prop prop-chandelier" data-png-type="royalChandelier" data-depth="0.18" alt="3D Mughal Chandelier" />
+            </div>
+
+            <div class="scene-container barat-darbar-layout">
+                <!-- Grand Mughal Arch Frame -->
+                <div class="mughal-open-arch reveal-item reveal-zoom">
+                    <div class="arch-top-kalash">
+                        <img class="icon-3d-img icon-3d-lg" data-icon-3d="crown" alt="3D Royal Crown" />
+                    </div>
+                    <span class="darbar-subtitle">ROYAL BARAT PROCESSION</span>
+                    <h2 class="darbar-main-title">Barat Ceremony</h2>
+                    <p class="darbar-prose">
+                        You are cordially invited to grace the auspicious occasion of the Barat Ceremony celebrating the blessed union of
+                    </p>
+                    <div class="darbar-couple-banner">
+                        <span class="darbar-groom">Qasim</span>
+                        <span class="darbar-weds-tag">WEDS</span>
+                        <span class="darbar-bride">Zoya</span>
+                    </div>
+                </div>
+
+                <!-- Split Imperial Timeline Pillars -->
+                <div class="imperial-pillars-grid">
+                    <div class="imperial-pillar pillar-date reveal-item reveal-left">
+                        <div class="pillar-capital"></div>
+                        <div class="pillar-body">
+                            <img class="icon-3d-img icon-3d-md" data-icon-3d="calendar" alt="3D Calendar" />
+                            <span class="pillar-tag">DATE</span>
+                            <h3>2nd March 2030</h3>
+                            <p>Auspicious Barat Day</p>
+                        </div>
+                        <div class="pillar-base"></div>
+                    </div>
+
+                    <!-- Center Taj Mahal Palace Silhouette Banner -->
+                    <div class="taj-palace-centerpiece reveal-item reveal-up">
+                        <div class="palace-dome-svg">
+                            <svg viewBox="0 0 300 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M150 5 C150 5 185 35 185 62 C185 78 175 85 175 85 L125 85 C125 85 115 78 115 62 C115 35 150 5 150 5 Z" stroke="#ffd54f" stroke-width="2" fill="rgba(212,175,55,0.22)"/>
+                                <path d="M85 35 C85 35 105 52 105 70 L105 85 L65 85 L65 70 C65 52 85 35 85 35 Z" stroke="#ffd54f" stroke-width="1.5" fill="rgba(212,175,55,0.14)"/>
+                                <path d="M215 35 C215 35 235 52 235 70 L235 85 L195 85 L195 70 C195 52 215 35 215 35 Z" stroke="#ffd54f" stroke-width="1.5" fill="rgba(212,175,55,0.14)"/>
+                                <line x1="20" y1="85" x2="280" y2="85" stroke="#ffd54f" stroke-width="2"/>
+                                <line x1="40" y1="20" x2="40" y2="85" stroke="#ffd54f" stroke-width="3"/>
+                                <line x1="260" y1="20" x2="260" y2="85" stroke="#ffd54f" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        <div class="palace-pin-row">
+                            <img class="icon-3d-img icon-3d-sm" data-icon-3d="location" alt="3D Location" />
+                            <span class="palace-pin">VENUE</span>
+                        </div>
+                        <h3 class="palace-name">Taj Mahal Shadi Hall</h3>
+                        <p class="palace-caption">A Night of Royal Celebration &amp; Blessings</p>
+                    </div>
+
+                    <div class="imperial-pillar pillar-time reveal-item reveal-right">
+                        <div class="pillar-capital"></div>
+                        <div class="pillar-body">
+                            <img class="icon-3d-img icon-3d-md" data-icon-3d="clock" alt="3D Clock" />
+                            <span class="pillar-tag">TIME</span>
+                            <h3>5:00 PM</h3>
+                            <p>Royal Procession</p>
+                        </div>
+                        <div class="pillar-base"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===============================================================
+             SCENE 4: WALIMA RECEPTION (CELESTIAL SAPPHIRE & PEARL MOONLIGHT)
+             =============================================================== -->
+        <section id="scene-walima" class="wedding-scene scene-walima" data-scene-index="3">
+            <!-- Floating 3D PNG Props for Walima -->
+            <div class="scene-3d-props">
+                <img class="png-3d-prop prop-crescent-moon" data-png-type="crescentMoon" data-depth="0.22" alt="3D Golden Crescent Moon" />
+                <img class="png-3d-prop prop-pearl-shell-left" data-png-type="pearlOrchid" data-depth="0.16" alt="3D Pearl Cluster" />
+                <img class="png-3d-prop prop-pearl-shell-right" data-png-type="pearlOrchid" data-depth="0.20" alt="3D Pearl Cluster" />
+            </div>
+
+            <div class="scene-container walima-celestial-layout">
+                <!-- Floating Starlight Header -->
+                <div class="celestial-header reveal-item reveal-up">
+                    <span class="walima-dove-badge">DAWAT-E-WALIMA</span>
+                    <h2 class="walima-title">Walima Reception</h2>
+                    <svg class="ornament-svg"><use href="#ornament-divider"></use></svg>
+                    <p class="walima-lead">
+                        Alhamdulillah! Requesting the honor of your presence at the Walima Reception to share in our happiness and bless the newlyweds
+                    </p>
+                </div>
+
+                <!-- Interlocking Pearl Rings for Couple -->
+                <div class="pearl-rings-stage reveal-item reveal-zoom">
+                    <div class="pearl-ring ring-left">
+                        <span class="ring-name">Qasim</span>
+                    </div>
+                    <div class="ring-center-badge">
+                        <img class="icon-3d-img icon-3d-md" data-icon-3d="rings" alt="3D Interlocking Rings" />
+                    </div>
+                    <div class="pearl-ring ring-right">
+                        <span class="ring-name">Zoya</span>
+                    </div>
+                </div>
+
+                <!-- Open Panoramic Glass Wave Banner -->
+                <div class="walima-glass-wave reveal-item reveal-up">
+                    <div class="wave-segment wave-date">
+                        <img class="icon-3d-img icon-3d-md" data-icon-3d="calendar" alt="3D Calendar" />
+                        <span class="wave-label">DATE</span>
+                        <strong class="wave-main">3rd March 2030</strong>
+                    </div>
+                    <div class="wave-divider"></div>
+                    <div class="wave-segment wave-venue-highlight">
+                        <img class="icon-3d-img icon-3d-md" data-icon-3d="location" alt="3D Venue" />
+                        <span class="wave-label">VENUE</span>
+                        <strong class="wave-venue">Al Rehman Marquee</strong>
+                        <small>Dinner &amp; Prayers for the Blessed Couple</small>
+                    </div>
+                    <div class="wave-divider"></div>
+                    <div class="wave-segment wave-time">
+                        <img class="icon-3d-img icon-3d-md" data-icon-3d="clock" alt="3D Clock" />
+                        <span class="wave-label">TIME</span>
+                        <strong class="wave-main">6:00 PM</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===============================================================
+             SCENE 5: SPECIAL GUESTS & FAMILY CONSTELLATION + COUNTDOWN
+             =============================================================== -->
+        <section id="scene-guests" class="wedding-scene scene-guests" data-scene-index="4">
+            <!-- Floating 3D PNG Props for Finale -->
+            <div class="scene-3d-props">
+                <img class="png-3d-prop prop-finale-lantern-1" data-png-type="lantern" data-depth="0.18" alt="3D Golden Lantern" />
+                <img class="png-3d-prop prop-finale-lantern-2" data-png-type="lantern" data-depth="0.22" alt="3D Golden Lantern" />
+                <img class="png-3d-prop prop-finale-rose" data-png-type="crimsonRose" data-depth="0.15" alt="3D Velvet Rose" />
+            </div>
+
+            <div class="scene-container guests-constellation-layout">
+                <div class="constellation-header reveal-item reveal-up">
+                    <span class="compliments-ribbon">WITH COMPLIMENTS &amp; WARM REGARDS</span>
+                    <h2 class="family-main-title">Special Guests &amp; Family</h2>
+                    <svg class="ornament-svg"><use href="#ornament-divider"></use></svg>
+                    <p class="family-sub">Looking forward to welcoming you with open hearts</p>
+                </div>
+
+                <!-- Open Royal Family Constellation Tree -->
+                <div class="family-tree-architecture">
+                    <!-- Apex Patriarch Crest -->
+                    <div class="patriarch-crest-node reveal-item reveal-zoom">
+                        <div class="crest-crown">
+                            <img class="icon-3d-img icon-3d-md" data-icon-3d="crown" alt="3D Crown" />
+                        </div>
+                        <span class="crest-role">FATHER</span>
+                        <h3 class="crest-patriarch-name">Mian Muhammad Javed</h3>
+                        <div class="tree-connector-vertical"></div>
+                    </div>
+
+                    <!-- Horizontal Golden Branch -->
+                    <div class="tree-branch-bar reveal-item reveal-up"></div>
+
+                    <!-- 4 Medallions for Brothers & Nephew -->
+                    <div class="family-medallions-row">
+                        <div class="medallion-node reveal-item reveal-up" style="--delay: 0.08s">
+                            <div class="medallion-circle">
+                                <span class="medallion-role">BROTHER</span>
+                                <h4 class="medallion-name">Osama Muzammil</h4>
+                            </div>
+                        </div>
+
+                        <div class="medallion-node reveal-item reveal-up" style="--delay: 0.16s">
+                            <div class="medallion-circle">
+                                <span class="medallion-role">BROTHER</span>
+                                <h4 class="medallion-name">Hussain Javed</h4>
+                            </div>
+                        </div>
+
+                        <div class="medallion-node reveal-item reveal-up" style="--delay: 0.24s">
+                            <div class="medallion-circle">
+                                <span class="medallion-role">BROTHER</span>
+                                <h4 class="medallion-name">Abdullah Javed</h4>
+                            </div>
+                        </div>
+
+                        <div class="medallion-node nephew-medallion reveal-item reveal-up" style="--delay: 0.32s">
+                            <div class="medallion-circle">
+                                <span class="medallion-role">NEPHEW</span>
+                                <h4 class="medallion-name">Mohammad bin Osama</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Countdown to 1st March 2030 -->
+                <div class="royal-countdown-strip reveal-item reveal-up">
+                    <span class="countdown-heading">COUNTING DOWN TO THE ROYAL CELEBRATION</span>
+                    <div class="countdown-counters" id="countdown-box">
+                        <div class="time-unit"><strong id="cd-days">000</strong><small>DAYS</small></div>
+                        <div class="time-sep">:</div>
+                        <div class="time-unit"><strong id="cd-hours">00</strong><small>HOURS</small></div>
+                        <div class="time-sep">:</div>
+                        <div class="time-unit"><strong id="cd-mins">00</strong><small>MINUTES</small></div>
+                        <div class="time-sep">:</div>
+                        <div class="time-unit"><strong id="cd-secs">00</strong><small>SECONDS</small></div>
+                    </div>
+                </div>
+
+                <!-- Finale Thank You Signature -->
+                <footer class="finale-signature reveal-item reveal-zoom">
+                    <h2 class="thank-you-calligraphy">Thank You!</h2>
+                    <p class="blessing-closing">Your presence and prayers are the greatest gift to our family.</p>
+                    <a href="#scene-nikah" class="back-to-top-link">
+                        <img class="icon-3d-img icon-3d-xs" data-icon-3d="arrowUp" alt="Top" />
+                        <span>Back to Top</span>
+                    </a>
+                </footer>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
